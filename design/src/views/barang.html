@@ -1,0 +1,154 @@
+<!doctype html>
+<html class="bg-background-500 font-inter">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link href="/src/css/output.css" rel="stylesheet" />
+  </head>
+  <body>
+    <section id="layout" class="h-14">
+      <header class="flex h-full items-center justify-center bg-primary-500">
+        <h3 class="text-xl font-bold text-white">Barang</h3>
+      </header>
+      <div class="flex w-full" style="height: calc(100vh - 3.5rem)">
+        <aside class="grid w-40 grid-rows-10 items-center bg-primary-600 p-4">
+          <a
+            href=""
+            class="w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Barang</a
+          >
+          <a
+            href=""
+            class="w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Pelanggan</a
+          >
+          <a
+            href=""
+            class="w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Transaksi</a
+          >
+          <a
+            href=""
+            class="w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Riwayat</a
+          >
+          <a
+            href=""
+            class="w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Laporan</a
+          >
+          <a
+            href=""
+            class="w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Pengguna</a
+          >
+          <a
+            href="/src/views/login.html"
+            class="row-start-10 w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Keluar</a
+          >
+        </aside>
+        <main style="width: calc(100vw - 10rem)">
+          <div x-data="{nama_barang: '', harga_barang: '', stok_barang: ''}" class="p-8">
+            <form action="" class="grid gap-4 grid-cols-2">
+              <input
+                type="text"
+                name="kode_barang"
+                id="kode_barang"
+                placeholder="Kode Barang"
+                readonly
+                class="w-full rounded bg-gray-400 px-4 py-2 shadow outline-none placeholder:text-gray-700 focus:ring"
+              />
+              <input
+                x-model="nama_barang"
+                type="text"
+                name="nama_barang"
+                id="nama_barang"
+                placeholder="Nama Barang"
+                class="w-full rounded bg-gray-300 px-4 py-2 shadow outline-none placeholder:text-gray-600 focus:ring"
+              />
+              <input
+                x-model="harga_barang"
+                type="number"
+                name="harga_barang"
+                id="harga_barang"
+                placeholder="Harga Barang"
+                class="w-full rounded bg-gray-300 px-4 py-2 shadow outline-none placeholder:text-gray-600 focus:ring"
+              />
+              <input
+                x-model="stok_barang"
+                type="number"
+                name="stok_barang"
+                id="stok_barang"
+                placeholder="Stok Barang"
+                class="w-full rounded bg-gray-300 px-4 py-2 shadow outline-none placeholder:text-gray-600 focus:ring"
+              />
+            </form>
+
+            <div class="mt-4">
+              <a
+                href=""
+                class="inline-block rounded bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600"
+                >Tambah Barang</a
+              >
+              <a
+                href=""
+                class="inline-block rounded bg-yellow-500 px-4 py-2 font-medium text-white hover:bg-yellow-600"
+                >Ubah Barang</a
+              >
+              <a
+                href=""
+                class="inline-block rounded bg-red-500 px-4 py-2 font-medium text-white hover:bg-red-600"
+                >Hapus Barang</a
+              >
+              <a
+                @click="nama_barang = ''; harga_barang = ''; stok_barang = ''"
+                href=""
+                class="inline-block rounded bg-primary-500 px-4 py-2 font-medium text-white hover:bg-primary-600"
+                >Bersihkan Form</a
+              >
+            </div>
+
+            <table class="mt-8 w-full text-center">
+              <thead>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
+                <th>Harga Barang</th>
+                <th>Stok Barang</th>
+                <th>Aksi</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>P-001</td>
+                  <td>Garam</td>
+                  <td>Rp. 5000</td>
+                  <td>100</td>
+                  <td>
+                    <button type="button"
+                      href=""
+                      class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+                      >Pilih</but
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+    </section>
+
+    <!-- JS -->
+    <script defer type="module" src="/src/js/app.js"></script>
+  </body>
+</html>
