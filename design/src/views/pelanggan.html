@@ -63,9 +63,9 @@
             <form action="" class="grid gap-4 grid-cols-2">
               <input
                 type="text"
-                name="kode_pelanggan"
-                id="kode_pelanggan"
-                placeholder="Kode Pelanggan"
+                name="id_pelanggan"
+                id="id_pelanggan"
+                placeholder="ID Pelanggan"
                 readonly
                 class="w-full rounded bg-gray-400 px-4 py-2 shadow outline-none placeholder:text-gray-700 focus:ring"
               />
@@ -89,7 +89,7 @@
                 type="tel"
                 name="telepon_pelanggan"
                 id="telepon_pelanggan"
-                placeholder="Teleepon Pelanggan"
+                placeholder="Telepon Pelanggan"
                 class="w-full rounded bg-gray-300 px-4 py-2 shadow outline-none placeholder:text-gray-600 focus:ring h-fit"
               />
             </form>
@@ -98,20 +98,20 @@
               <a
                 href=""
                 class="inline-block rounded bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600"
-                >Tambah Barang</a
+                >Tambah Pelanggan</a
               >
               <a
                 href=""
-                class="inline-block rounded bg-yellow-500 px-4 py-2 font-medium text-white hover:bg-yellow-600"
-                >Ubah Barang</a
+                class="inline-block rounded bg-yellow-500 px-4 py-2 font-medium hover:bg-yellow-600"
+                >Ubah Pelanggan</a
               >
               <a
                 href=""
                 class="inline-block rounded bg-red-500 px-4 py-2 font-medium text-white hover:bg-red-600"
-                >Hapus Barang</a
+                >Hapus Pelanggan</a
               >
               <a
-                @click="nama_barang = ''; harga_barang = ''; stok_barang = ''"
+                @click="nama_pelanggan = ''; harga_pelanggan = ''; stok_pelanggan = ''"
                 href=""
                 class="inline-block rounded bg-primary-500 px-4 py-2 font-medium text-white hover:bg-primary-600"
                 >Bersihkan Form</a
@@ -120,18 +120,18 @@
 
             <table class="mt-8 w-full text-center">
               <thead>
-                <th>Kode Barang</th>
-                <th>Nama Barang</th>
-                <th>Harga Barang</th>
-                <th>Stok Barang</th>
+                <th>ID Pelanggan</th>
+                <th>Nama Pelanggan</th>
+                <th>Alamat Pelanggan</th>
+                <th>Telepon Pelanggan</th>
                 <th>Aksi</th>
               </thead>
               <tbody>
                 <tr>
                   <td>P-001</td>
-                  <td>Garam</td>
-                  <td>Rp. 5000</td>
-                  <td>100</td>
+                  <td>Ujang</td>
+                  <td>Kp. Cerah</td>
+                  <td>0881-2314-7291</td>
                   <td>
                     <button type="button"
                       href=""

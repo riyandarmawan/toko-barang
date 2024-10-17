@@ -1,0 +1,226 @@
+<!doctype html>
+<html class="bg-background-500 font-inter">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link href="/src/css/output.css" rel="stylesheet" />
+  </head>
+  <body>
+    <section id="layout" class="h-14">
+      <header class="flex h-full items-center justify-center bg-primary-500">
+        <h3 class="text-xl font-bold text-white">Transaksi</h3>
+      </header>
+      <div class="flex w-full" style="height: calc(100vh - 3.5rem)">
+        <aside class="grid w-40 grid-rows-10 items-center bg-primary-600 p-4">
+          <a
+            href="barang.html"
+            class="w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Barang</a
+          >
+          <a
+            href="pelanggan.html"
+            class="w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Pelanggan</a
+          >
+          <a
+            href="transaksi.html"
+            class="w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Transaksi</a
+          >
+          <a
+            href="riwayat.html"
+            class="w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Riwayat</a
+          >
+          <a
+            href="laporan.html"
+            class="w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Laporan</a
+          >
+          <a
+            href="pengguna.html"
+            class="w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Pengguna</a
+          >
+          <a
+            href="/src/views/login.html"
+            class="row-start-10 w-full rounded bg-primary-700 py-2 text-center font-bold text-white hover:bg-primary-800"
+            >Keluar</a
+          >
+        </aside>
+        <main style="width: calc(100vw - 10rem)">
+          <div class="p-8">
+            <form x-data="transactionForm()" class="grid gap-4">
+              <div>
+                <label for="ID_transaksi" class="me-4 inline-block w-40"
+                  >ID Transaksi</label
+                >
+                <input
+                  type="text"
+                  name="ID_transaksi"
+                  id="ID_transaksi"
+                  readonly
+                  class="w-60 rounded bg-gray-400 px-4 py-2 shadow"
+                />
+              </div>
+              <div>
+                <label for="tanggal_transaksi" class="me-4 inline-block w-40"
+                  >Tanggal Transaksi</label
+                >
+                <input
+                  type="date"
+                  name="tanggal_transaksi"
+                  id="tanggal_transaksi"
+                  readonly
+                  class="w-60 rounded bg-gray-400 px-4 py-2 shadow"
+                />
+              </div>
+              <div>
+                <label for="id_pelanggan" class="me-4 inline-block w-40"
+                  >ID Pelanggan</label
+                >
+                <input
+                  type="text"
+                  name="id_pelanggan"
+                  id="id_pelanggan"
+                  class="w-60 rounded bg-gray-300 px-4 py-2 shadow placeholder:text-gray-600"
+                />
+              </div>
+              <div>
+                <label for="nama_pelanggan" class="me-4 inline-block w-40"
+                  >Nama Pelanggan</label
+                >
+                <input
+                  type="text"
+                  name="nama_pelanggan"
+                  id="nama_pelanggan"
+                  readonly
+                  class="w-60 rounded bg-gray-400 px-4 py-2 shadow"
+                />
+              </div>
+
+              <table class="mt-4">
+                <thead>
+                  <th>ID Barang</th>
+                  <th>Nama Barang</th>
+                  <th>Harga Barang</th>
+                  <th>Jumlah Barang</th>
+                  <th>Subtotal Barang</th>
+                </thead>
+                <tbody>
+                  <template x-for="(item, index) in items" :key="index">
+                    <tr>
+                      <td class="p-0">
+                        <input
+                          type="text"
+                          x-model="item.id_barang"
+                          class="w-full border-none"
+                        />
+                      </td>
+                      <td class="p-0">
+                        <input
+                          type="text"
+                          x-model="item.nama_barang"
+                          disabled
+                          class="w-full border-none bg-gray-300"
+                        />
+                      </td>
+                      <td class="p-0">
+                        <input
+                          type="number"
+                          x-model="item.harga"
+                          @input="updateSubtotal(index)"
+                          disabled
+                          class="w-full border-none bg-gray-300"
+                        />
+                      </td>
+                      <td class="p-0">
+                        <input
+                          type="number"
+                          x-model="item.jumlah"
+                          @input="updateSubtotal(index)"
+                          class="w-full border-none"
+                        />
+                      </td>
+                      <td class="p-0">
+                        <input
+                          type="number"
+                          x-model="item.sub_total"
+                          disabled
+                          class="w-full border-none bg-gray-300"
+                        />
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="3" class="p-0">
+                      <button
+                        type="button"
+                        @click="addItem"
+                        class="w-full border-none bg-blue-500 text-white hover:bg-blue-600"
+                      >
+                        Tambah Barang
+                      </button>
+                    </td>
+                    <td colspan="2" class="p-0">
+                      <button
+                        type="button"
+                        @click="removeItem(items.length - 1)"
+                        class="w-full border-none bg-red-500 text-white hover:bg-red-600"
+                      >
+                        Hapus Barang
+                      </button>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+
+              <input type="text" name="total_harga" id="total_harga" placeholder="Rp. 0" readonly class="p-4 text-xl bg-gray-300 rounded shadow placeholder:text-gray-700 max-w-96">
+
+              <button class="py-2 px-4 bg-blue-500 hover:bg hvoer:bg-blue-600 text-white w-96 rounded shadow">Simpan</button>
+            </form>
+          </div>
+        </main>
+      </div>
+    </section>
+
+    <script>
+      function transactionForm() {
+        return {
+          items: [],
+          addItem() {
+            this.items.push({
+              id_barang: "",
+              nama_barang: "",
+              harga: 0,
+              jumlah: 1,
+              sub_total: 0,
+            });
+          },
+          removeItem(index) {
+            this.items.splice(index, 1);
+          },
+          updateSubtotal(index) {
+            const item = this.items[index];
+            item.sub_total = item.harga * item.jumlah;
+          },
+        };
+      }
+    </script>
+
+    <!-- JS -->
+    <script defer type="module" src="/src/js/app.js"></script>
+  </body>
+</html>
