@@ -18,7 +18,7 @@
   <body>
     <section id="layout" class="h-14">
       <header class="flex h-full items-center justify-center bg-primary-500">
-        <h3 class="text-xl font-bold text-white">Barang</h3>
+        <h3 class="text-xl font-bold text-white">Pelanggan</h3>
       </header>
       <div class="flex w-full" style="height: calc(100vh - 3.5rem)">
         <aside class="grid w-40 grid-rows-10 items-center bg-primary-600 p-4">
@@ -59,39 +59,38 @@
           >
         </aside>
         <main style="width: calc(100vw - 10rem)">
-          <div x-data="{nama_barang: '', harga_barang: '', stok_barang: ''}" class="p-8">
+          <div x-data="{nama_pelanggan: '', alamat_pelanggan: '', telepon_pelanggan: ''}" class="p-8">
             <form action="" class="grid gap-4 grid-cols-2">
               <input
                 type="text"
-                name="kode_barang"
-                id="kode_barang"
-                placeholder="Kode Barang"
+                name="kode_pelanggan"
+                id="kode_pelanggan"
+                placeholder="Kode Pelanggan"
                 readonly
                 class="w-full rounded bg-gray-400 px-4 py-2 shadow outline-none placeholder:text-gray-700 focus:ring"
               />
               <input
-                x-model="nama_barang"
+                x-model="nama_pelanggan"
                 type="text"
-                name="nama_barang"
-                id="nama_barang"
-                placeholder="Nama Barang"
+                name="nama_pelanggan"
+                id="nama_pelanggan"
+                placeholder="Nama Pelanggan"
                 class="w-full rounded bg-gray-300 px-4 py-2 shadow outline-none placeholder:text-gray-600 focus:ring"
               />
-              <input
-                x-model="harga_barang"
-                type="number"
-                name="harga_barang"
-                id="harga_barang"
-                placeholder="Harga Barang"
+              <textarea
+                x-model="alamat_pelanggan"
+                name="alamat_pelanggan"
+                id="alamat_pelanggan"
+                placeholder="Alamat Pelanggan"
                 class="w-full rounded bg-gray-300 px-4 py-2 shadow outline-none placeholder:text-gray-600 focus:ring"
-              />
+              ></textarea>
               <input
-                x-model="stok_barang"
-                type="number"
-                name="stok_barang"
-                id="stok_barang"
-                placeholder="Stok Barang"
-                class="w-full rounded bg-gray-300 px-4 py-2 shadow outline-none placeholder:text-gray-600 focus:ring"
+                x-model="telepon_pelanggan"
+                type="tel"
+                name="telepon_pelanggan"
+                id="telepon_pelanggan"
+                placeholder="Teleepon Pelanggan"
+                class="w-full rounded bg-gray-300 px-4 py-2 shadow outline-none placeholder:text-gray-600 focus:ring h-fit"
               />
             </form>
 
