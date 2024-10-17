@@ -1,0 +1,50 @@
+<!doctype html>
+<html class="font-inter bg-background-500">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link href="/src/css/output.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="grid h-screen grid-cols-2 grid-rows-1">
+      <div class="flex items-center justify-center bg-primary-500">
+        <img src="/src/images/people-shopping.png" alt="People Shopping" />
+      </div>
+      <form action="/src/views/barang/barang.html" class="flex flex-col items-center justify-center gap-4">
+        <h1 class="mb-4 text-4xl font-bold">Selamat Datang Kembali</h1>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Username"
+          class="w-96 rounded bg-gray-300 px-4 py-2 outline-none placeholder:text-gray-600 focus:ring focus:ring-primary-500"
+        />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          class="w-96 rounded bg-gray-300 px-4 py-2 outline-none placeholder:text-gray-600 focus:ring focus:ring-primary-500"
+        />
+        <button
+          class="mt-2 w-96 rounded bg-primary-500 py-2 font-bold text-white hover:bg-primary-600"
+        >
+          Masuk
+        </button>
+      </form>
+    </div>
+
+    <!-- JS -->
+     <script defer type="module" src="/src/js/app.js"></script>
+  </body>
+</html>

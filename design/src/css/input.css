@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+table * {
+    @apply border border-slate-500 p-4
+}
+
+[x-cloak] {display: none !important;} 
