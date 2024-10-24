@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+table * {
+    @apply border border-slate-500 px-4 py-2 text-center;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+.input-valid {
+    @apply bg-gray-300 placeholder:text-gray-600 focus:ring-primary-500;
+}
+
+.input-invalid {
+    @apply bg-red-300 placeholder:text-red-600 focus:ring-red-500;
+}
