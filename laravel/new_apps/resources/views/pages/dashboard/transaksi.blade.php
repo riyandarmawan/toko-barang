@@ -1,4 +1,4 @@
-<x-dashboard-layout>
+<x-dashboard-layout :$title>
     <div class="p-8">
         <form x-data="transactionForm()" class="grid gap-4">
             <div>

@@ -1,4 +1,4 @@
-<x-base-layout title="{{ $title }}">
+<x-base-layout :$title>
     <div class="grid h-screen grid-cols-2 grid-rows-1">
         <div class="flex items-center justify-center bg-primary-500">
             <img src="{{ asset('storage/images/people-shopping.png') }}" alt="People Shopping" />

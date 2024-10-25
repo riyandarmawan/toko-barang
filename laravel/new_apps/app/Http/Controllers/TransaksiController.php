@@ -12,7 +12,11 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        return view('pages.dashboard.transaksi');
+        $data = [
+            'title' => 'Transaksi'
+        ];
+        
+        return view('pages.dashboard.transaksi', $data);
     }
 
     /**

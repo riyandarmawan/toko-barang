@@ -1,4 +1,4 @@
-<x-dashboard-layout :title="$title" >
+<x-dashboard-layout :$title>
     <div x-data="{ nama_barang: '', harga_barang: '', stok_barang: '' }" class="p-8">
         <form action="" class="grid grid-cols-2 gap-4">
             <input type="text" name="id_barang" id="id_barang" placeholder="ID Barang" readonly

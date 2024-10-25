@@ -10,7 +10,7 @@ Route::get('/auth/login', [AuthenticationController::class, 'login'])->name('log
 
 Route::post('/auth/login', [AuthenticationController::class, 'loginProcess']);
 
-Route::get('/auth/logout', [AuthenticationController::class, 'logout']);
+Route::post('/auth/logout', [AuthenticationController::class, 'logout']);
 
 // Dashboard
 Route::middleware('auth:admin')->group(function () {
