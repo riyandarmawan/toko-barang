@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AuthenticationController;
-use App\Http\Controllers\BarangController;
-use App\Http\Controllers\TransaksiController;
-use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BarangController;
+use App\Http\Middleware\IsAdminMiddleware;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\AuthenticationController;
 
 Route::get('/auth/login', [AuthenticationController::class, 'login'])->name('login');
 
@@ -14,7 +15,21 @@ Route::post('/auth/logout', [AuthenticationController::class, 'logout']);
 
 // Dashboard
 Route::middleware('auth:admin')->group(function () {
-    Route::get('/dashboard/barang', [BarangController::class, 'index'])->middleware(IsAdminMiddleware::class);
-
+    // transaksi
     Route::get('/dashboard/transaksi', [TransaksiController::class, 'index']);
+
+    Route::middleware(IsAdminMiddleware::class)->group(function () {
+        // barang
+        Route::get('/dashboard/barang', [BarangController::class, 'index']);
+        Route::post('/dashboard/barang/tambah', [BarangController::class, 'store']);
+
+        // pelanggan
+        Route::get('/dashboard/pelanggan', [PelangganController::class, 'index']);
+        Route::post('/dashboard/pelanggan/tambah', [PelangganController::class, 'add']);
+
+        // pelanggan APIs
+        Route::get('/api/pelanggan/get/{id}', [PelangganController::class, 'getPelanggan']);
+        Route::get('/api/pelanggan/update/{id}', [PelangganController::class, 'updatePelanggan']);
+        Route::get('/api/pelanggan/delete/{id}', [PelangganController::class, 'deletePelanggan']);
+    });
 });

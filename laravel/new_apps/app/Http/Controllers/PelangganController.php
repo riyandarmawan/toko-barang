@@ -7,59 +7,78 @@ use Illuminate\Http\Request;
 
 class PelangganController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $pelanggans = Pelanggan::paginate(10);
+
+        $latestId = Pelanggan::orderByDesc('id_pelanggan')->first('id_pelanggan')['id_pelanggan'];
+
+        $latestCount = sprintf('%03d', explode('-', $latestId)[1] + 1);
+
+        $latestId = "P-$latestCount";
+
+        $data = [
+            'title' => 'Pelanggan',
+            'pelanggans' => $pelanggans,
+            'latestId' => $latestId
+        ];
+
+        return view('pages.dashboard.pelanggan', $data);
+    }
+    
+    public function add(Request $request)
+    {
+        $request->validate([
+            'nama_pelanggan' => 'required',
+            'alamat' => 'required',
+            'telepon' => 'required|digits_between:8,13'
+        ], [
+            // nama pelanggan
+            'nama_pelanggan.required' => 'Nama pelanggan harus diisi',
+
+            // alamat
+            'alamat.required' => 'Alamat harus diisi',
+
+            // telepon
+            'telepon.required' => 'Telepon harus diisi',
+            'telepon.digits_between' => 'Telepon harus berupa rentang digit dari 8 sampai 13 angka'
+        ]);
+
+        $pelanggan = new Pelanggan();
+
+        $pelanggan->create($request->all());
+
+        return redirect('/dashboard/pelanggan')->with('success', 'Data pelanggan berhasil ditambahkan!');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function getPelanggan($id) {
+        $pelanggan = Pelanggan::find($id);
+
+        if($pelanggan) {
+            return response()->json($pelanggan);
+        }
+
+        return response()->json(['message', 'Pelanggan not found'], 404);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function updatePelanggan($id)
     {
-        //
+        $pelanggan = Pelanggan::find($id);
+
+        if ($pelanggan) {
+            return response()->json(['message' => 'Pelanggan success deleted']);
+        }
+
+        return response()->json(['message' => 'Pelanggan not found'], 404);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pelanggan $pelanggan)
-    {
-        //
-    }
+    public function deletePelanggan($id) {
+        $pelanggan = Pelanggan::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pelanggan $pelanggan)
-    {
-        //
-    }
+        if($pelanggan->delete()) {
+            return response()->json(['message' => 'Pelanggan success deleted']);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Pelanggan $pelanggan)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Pelanggan $pelanggan)
-    {
-        //
+        return response()->json(['message' => 'Pelanggan not found'], 404);
     }
 }

@@ -17,7 +17,7 @@ class PelangganFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_pelanggan' => $this->faker->numerify('PLG-######'),
+            'id_pelanggan' => $this->faker->numerify('P-###'),
             'nama_pelanggan' => $this->faker->name(),
             'alamat'=> $this->faker->address(),
             'telepon' => $this->faker->numerify('08############'),

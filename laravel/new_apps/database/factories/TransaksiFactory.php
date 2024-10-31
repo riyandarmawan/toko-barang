@@ -19,7 +19,7 @@ class TransaksiFactory extends Factory
     {
         return [
             'id_transaksi' => $this->faker->numerify('TRS-####################'),
-            'id_pelanggan' => Pelanggan::class,
+            'id_pelanggan' => Pelanggan::factory(),
             'tanggal_transaksi' => $this->faker->date(),
             'total_harga' => $this->faker->randomNumber()
         ];

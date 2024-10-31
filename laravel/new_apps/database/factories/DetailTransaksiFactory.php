@@ -19,9 +19,9 @@ class DetailTransaksiFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_transaksi' => Transaksi::class,
-            'id_barang' => Barang::class,
-            'jumlah' => $this->faker->randomNumber(100),
+            'id_transaksi' => Transaksi::factory(),
+            'id_barang' => Barang::factory(),
+            'jumlah' => $this->faker->randomNumber(),
             'sub_total' => $this->faker->randomNumber(),
         ];
     }

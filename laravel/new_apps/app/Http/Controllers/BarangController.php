@@ -12,8 +12,18 @@ class BarangController extends Controller
      */
     public function index()
     {
+        $barangs = Barang::paginate(10);
+
+        $latestId = Barang::orderByDesc('id_barang')->first('id_barang')['id_barang'];
+
+        $latestCount = sprintf('%03d', explode('-', $latestId)[1] + 1);
+
+        $latestId = "B-$latestCount";
+
         $data = [
-            'title' => 'Barang'
+            'title' => 'Barang',
+            'barangs' => $barangs,
+            'latestId' => $latestId
         ];
 
         return view('pages.dashboard.barang', $data);
@@ -32,7 +42,26 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_barang' => 'required',
+            'harga' => 'required',
+            'stok' => 'required'
+        ], [
+            // nama barang
+            'nama_barang.required' => 'Nama barang harus diisi',
+
+            // harga
+            'harga.required' => 'Harga harus diisi',
+
+            // stok
+            'stok.required' => 'Stok harus diisi'
+        ]);
+
+        $barang = new Barang();
+
+        $barang->create($request->all());
+
+        return redirect('/dashboard/barang')->with('success', 'Data barang berhasil ditambahkan!');
     }
 
     /**

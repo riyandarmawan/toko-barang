@@ -17,10 +17,10 @@ class BarangFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_barang' => $this->faker->numerify('BRG-######'),
+            'id_barang' => $this->faker->numerify('B-###'),
             'nama_barang' => $this->faker->words(3, true),
             'harga' => $this->faker->randomNumber(),
-            'stok' => $this->faker->randomNumber(1000),
+            'stok' => $this->faker->randomNumber(),
         ];
     }
 }
