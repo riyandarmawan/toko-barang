@@ -57,7 +57,7 @@
                     <tr>
                         <td>{{ $barang->id_barang }}</td>
                         <td>{{ $barang->nama_barang }}</td>
-                        <td>{{ $barang->harga }}</td>
+                        <td>{{ 'Rp ' . number_format($barang->harga, 0, ',', '.') }}</td>
                         <td>{{ $barang->stok }}</td>
                         <td>
                             <button type="button" data-barang="{{ $barang->id_barang }}" @click="getBarang($el.dataset.barang)"
