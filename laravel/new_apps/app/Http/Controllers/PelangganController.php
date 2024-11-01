@@ -11,9 +11,11 @@ class PelangganController extends Controller
     {
         $pelanggans = Pelanggan::paginate(10);
 
-        $latestId = Pelanggan::orderByDesc('id_pelanggan')->first('id_pelanggan')['id_pelanggan'];
+        $latestId = Pelanggan::withTrashed()->orderByDesc('id_pelanggan')->first('id_pelanggan')['id_pelanggan'] ?? 'P-001';
 
-        $latestCount = sprintf('%03d', explode('-', $latestId)[1] + 1);
+        $latestCount = explode('-', $latestId)[1];
+        
+        $latestCount = sprintf('%03d',  $latestCount > 1 ? $latestCount + 1 : 1);
 
         $latestId = "P-$latestCount";
 
@@ -49,38 +51,5 @@ class PelangganController extends Controller
         $pelanggan->create($request->all());
 
         return redirect('/dashboard/pelanggan')->with('success', 'Data pelanggan berhasil ditambahkan!');
-    }
-
-    public function getPelanggan($id) {
-        $pelanggan = Pelanggan::find($id);
-
-        if($pelanggan) {
-            return response()->json($pelanggan);
-        }
-
-        return response()->json(['message', 'Pelanggan not found'], 404);
-    }
-
-    public function updatePelanggan($id, Request $request)
-    {
-        return response()->json([$id], 200);
-
-        $pelanggan = Pelanggan::find($id);
-
-        if ($pelanggan) {
-            return response()->json(['message' => 'Pelanggan success deleted']);
-        }
-
-        return response()->json(['message' => 'Pelanggan not found'], 404);
-    }
-
-    public function deletePelanggan($id) {
-        $pelanggan = Pelanggan::find($id);
-
-        if($pelanggan->delete()) {
-            return response()->json(['message' => 'Pelanggan success deleted']);
-        }
-
-        return response()->json(['message' => 'Pelanggan not found'], 404);
     }
 }

@@ -11,9 +11,10 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('/auth/register', RegisterController::class);
 Route::post('/auth/login', LoginController::class);
 
-Route::middleware('auth:sanctum')->group(function() {
-    Route::apiResource('/pelanggans', PelangganController::class);
-});
+// pelanggan
+Route::get('/pelanggans', [PelangganController::class, 'index']);
+Route::get('/pelanggans/get/{id}', [PelangganController::class, 'get']);
+Route::POST('/pelanggans/update/{id}', [PelangganController::class, 'update']);
+Route::get('/pelanggans/delete/{id}', [PelangganController::class, 'delete']);

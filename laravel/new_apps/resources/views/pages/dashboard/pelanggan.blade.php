@@ -1,6 +1,4 @@
 <x-dashboard-layout :$title>
-    @dd(session())
-
     <div x-data="{ id_pelanggan: '{{ $latestId }}',nama_pelanggan: '{{ $errors->has('nama_pelanggan') ? '' : old('nama_pelanggan') }}', alamat: '{{ $errors->has('alamat') ? '' : old('alamat') }}', telepon: '{{ $errors->has('telepon') ? '' : old('telepon') }}' }" class="p-8">
         <form action="/dashboard/pelanggan/tambah" method="POST" class="grid grid-cols-2 gap-4">
             @csrf
@@ -31,18 +29,18 @@
                 @enderror
             </div>
             <div class="col-span-2 mt-4">
-                <button type="submit"
-                    class="inline-block rounded bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600">Tambah
+                <button type="submit" id="tambah"
+                    class="inline-block rounded bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600 disabled:hover:bg-blue-800 disabled:bg-blue-700">Tambah
                     Pelanggan</button>
-                <button @click="updatePelanggan($refs.id_pelanggan.value)" type="button"
-                    class="inline-block rounded bg-yellow-500 px-4 py-2 font-medium hover:bg-yellow-600">Ubah
+                <button @click="updatePelanggan($refs.id_pelanggan.value)" type="button" disabled id="ubah"
+                    class="inline-block rounded bg-yellow-500 px-4 py-2 font-medium hover:bg-yellow-600 disabled:hover:bg-yellow-800 disabled:bg-yellow-700">Ubah
                     Pelanggan</button>
-                <button @click="deletePelanggan($refs.id_pelanggan.value)" type="button"
-                    class="inline-block rounded bg-red-500 px-4 py-2 font-medium text-white hover:bg-red-600">Hapus
+                <button @click="deletePelanggan($refs.id_pelanggan.value)" type="button" disabled id="hapus"
+                    class="inline-block rounded bg-red-500 px-4 py-2 font-medium text-white hover:bg-red-600 disabled:hover:bg-red-800 disabled:bg-red-700">Hapus
                     Pelanggan</button>
-                <a @click="nama_pelanggan = ''; harga_pelanggan = ''; stok_pelanggan = ''" href=""
-                    class="inline-block rounded bg-primary-500 px-4 py-2 font-medium text-white hover:bg-primary-600">Bersihkan
-                    Form</a>
+                <button type="button" disabled id="bersihkan" @click="location.reload()"
+                    class="inline-block rounded bg-primary-500 px-4 py-2 font-medium text-white hover:bg-primary-600 disabled:hover:bg-primary-800 disabled:bg-primary-700">Bersihkan
+                    Form</button>
             </div>
         </form>
 

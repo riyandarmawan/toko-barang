@@ -26,11 +26,5 @@ Route::middleware('auth:admin')->group(function () {
         // pelanggan
         Route::get('/dashboard/pelanggan', [PelangganController::class, 'index']);
         Route::post('/dashboard/pelanggan/tambah', [PelangganController::class, 'add']);
-
-        // pelanggan APIs
-        Route::get('/api/pelanggan/get/{id}', [PelangganController::class, 'getPelanggan']);
-        Route::get('/api/pelanggan/delete/{id}', [PelangganController::class, 'deletePelanggan']);
     });
 });
-
-        Route::post('/api/pelanggan/update/{id}', [PelangganController::class, 'updatePelanggan']);
