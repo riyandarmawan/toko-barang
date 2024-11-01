@@ -61,8 +61,10 @@ class PelangganController extends Controller
         return response()->json(['message', 'Pelanggan not found'], 404);
     }
 
-    public function updatePelanggan($id)
+    public function updatePelanggan($id, Request $request)
     {
+        return response()->json([$id], 200);
+
         $pelanggan = Pelanggan::find($id);
 
         if ($pelanggan) {

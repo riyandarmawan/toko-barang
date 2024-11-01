@@ -1,4 +1,6 @@
 <x-dashboard-layout :$title>
+    @dd(session())
+
     <div x-data="{ id_pelanggan: '{{ $latestId }}',nama_pelanggan: '{{ $errors->has('nama_pelanggan') ? '' : old('nama_pelanggan') }}', alamat: '{{ $errors->has('alamat') ? '' : old('alamat') }}', telepon: '{{ $errors->has('telepon') ? '' : old('telepon') }}' }" class="p-8">
         <form action="/dashboard/pelanggan/tambah" method="POST" class="grid grid-cols-2 gap-4">
             @csrf

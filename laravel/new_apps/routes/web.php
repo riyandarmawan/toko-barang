@@ -29,7 +29,8 @@ Route::middleware('auth:admin')->group(function () {
 
         // pelanggan APIs
         Route::get('/api/pelanggan/get/{id}', [PelangganController::class, 'getPelanggan']);
-        Route::get('/api/pelanggan/update/{id}', [PelangganController::class, 'updatePelanggan']);
         Route::get('/api/pelanggan/delete/{id}', [PelangganController::class, 'deletePelanggan']);
     });
 });
+
+        Route::post('/api/pelanggan/update/{id}', [PelangganController::class, 'updatePelanggan']);
