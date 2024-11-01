@@ -21,7 +21,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::middleware(IsAdminMiddleware::class)->group(function () {
         // barang
         Route::get('/dashboard/barang', [BarangController::class, 'index']);
-        Route::post('/dashboard/barang/tambah', [BarangController::class, 'store']);
+        Route::post('/dashboard/barang/tambah', [BarangController::class, 'add']);
 
         // pelanggan
         Route::get('/dashboard/pelanggan', [PelangganController::class, 'index']);

@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 
 class BarangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         $barangs = Barang::paginate(10);
 
-        $latestId = Barang::orderByDesc('id_barang')->first('id_barang')['id_barang'];
+        $latestId = Barang::withTrashed()->orderByDesc('id_barang')->first('id_barang')['id_barang'] ?? 'P-001';
 
-        $latestCount = sprintf('%03d', explode('-', $latestId)[1] + 1);
+        $latestCount = explode('-', $latestId)[1];
+
+        $latestCount = sprintf('%03d', $latestCount > 1 ? $latestCount + 1 : 1);
 
         $latestId = "B-$latestCount";
 
@@ -28,19 +28,8 @@ class BarangController extends Controller
 
         return view('pages.dashboard.barang', $data);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    
+    public function add(Request $request)
     {
         $request->validate([
             'nama_barang' => 'required',
@@ -61,38 +50,6 @@ class BarangController extends Controller
 
         $barang->create($request->all());
 
-        return redirect('/dashboard/barang')->with('success', 'Data barang berhasil ditambahkan!');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Barang $barang)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Barang $barang)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Barang $barang)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Barang $barang)
-    {
-        //
+        return redirect('/dashboard/barang')->with('success', 'Data Barang berhasil ditambahkan!');
     }
 }
